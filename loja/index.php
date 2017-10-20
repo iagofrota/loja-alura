@@ -3,8 +3,8 @@
 
 <h2>Login</h2>
 
-<?php if ((isset($_GET['login']) && $_GET['login']) == true) { ?>
-    <p class="alert-success">Logado com sucesso!</p>
+<?php if (isset($_COOKIE['usuario_logado'])) { ?>
+    <p class="alert-success">Você está logado como <?= $_COOKIE['usuario_logado'] ?></p>
 <?php } ?>
 <?php if(isset($_GET['login']) && $_GET['login'] == false) { ?>
     <p class="alert-danger">Usuário ou senha inválida!</p>
