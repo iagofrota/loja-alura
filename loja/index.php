@@ -2,14 +2,31 @@
 include("cabecalho.php");
 include 'logica-usuario.php';
 ?>
+
+<?php if (isset($_GET['logout']) && $_GET['logout'] == true) { ?>
+    <p class="alert-success">Deslogado com sucesso!</p>
+<?php } ?>
+
+<?php if (isset($_GET['login']) && $_GET['login'] == true) { ?>
+    <p class="alert-success">Logado com sucesso!</p>
+<?php } ?>
+
+<?php if(isset($_GET['login']) && $_GET['login'] == false) { ?>
+    <p class="alert-danger">Usuário ou senha inválido!</p>
+<?php } ?>
+
+<?php if(isset($_GET['falhaDeSeguranca']) && $_GET['falhaDeSeguranca'] == true) { ?>
+    <p class="alert-danger">Você não tem acesso a esta funcionalidade!</p>
+<?php } ?>
+
 <h1>Bem vindo!</h1>
 
-<h2>Login</h2>
 
-<?php if (usuarioLogado()) { ?>
-    <p class="alert-success">Você está logado como <?= $_COOKIE['usuario_logado'] ?></p>
-<?php } ?>
-<?php if(verificaUsuario()) { ?>
+
+<?php if (usuarioEstaLogado()) { ?>
+    <p class="alert-success">Você está logado como <?= $_COOKIE['usuario_logado'] ?>. <a href="logout.php">Deslogar</a> </p>
+<?php } else { ?>
+    <h2>Login</h2>
     <p class="alert-danger">Você não tem acesso a esta funcionalidade!</p>
 
     <form action="login.php" method="post">

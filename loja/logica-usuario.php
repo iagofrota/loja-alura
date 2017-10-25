@@ -5,7 +5,7 @@
  * Date: 24/10/2017
  * Time: 20:57
  */
-
+session_start();
 function verificaUsuario() {
     if(!usuarioLogado()) {
         header('location: index.php?falhaDeSeguranca=true');
@@ -14,11 +14,11 @@ function verificaUsuario() {
 }
 
 function usuarioEstaLogado() {
-    return isset($_COOKIE['usuario_logado']);
+    return isset($_SESSION['usuario_logado']);
 }
 
 function usuarioLogado() {
-    return $_COOKIE['usuario_logado'];
+    return $_SESSION['usuario_logado'];
 }
 
 /**
@@ -26,5 +26,9 @@ function usuarioLogado() {
  */
 function logaUsuario($email): void
 {
-    setcookie('usuario_logado', $email);
+    $_SESSION['usuario_logado'] = $email;
+}
+
+function logout() {
+    session_destroy();
 }
