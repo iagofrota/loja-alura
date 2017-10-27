@@ -29,7 +29,7 @@
         </td>
     </tr>
     <?php
-        endforeach
+        endforeach;
     ?>
 </table>
 
