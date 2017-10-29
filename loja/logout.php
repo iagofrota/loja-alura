@@ -5,7 +5,7 @@
  * Date: 24/10/2017
  * Time: 21:41
  */
-include 'logica-usuario.php';
+require_once 'logica-usuario.php';
 logout();
 $_SESSION["success"] = "Deslogado com sucesso.";
 header('location: index.php');
