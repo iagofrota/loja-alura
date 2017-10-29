@@ -8,10 +8,15 @@ verificaUsuario();
 ?>
 
 <?php
-$nome = $_POST["nome"];
-$preco = $_POST["preco"];
-$descricao = $_POST["descricao"];
-$categoria_id = $_POST['categoria_id'];
+//$nome = $_POST["nome"];
+//$preco = $_POST["preco"];
+//$descricao = $_POST["descricao"];
+//$categoria_id = $_POST['categoria_id'];
+
+$nome = mysqli_real_escape_string($conexao, $_POST["nome"]);
+$preco = mysqli_real_escape_string($conexao, $_POST["preco"]);
+$descricao = mysqli_real_escape_string($conexao, $_POST["descricao"]);
+$categoria_id = mysqli_real_escape_string($conexao, $_POST["categoria_id"]);
 
 if(array_key_exists('usado', $_POST)) {
     $usado = "true";
