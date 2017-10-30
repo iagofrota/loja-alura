@@ -4,13 +4,14 @@
  * Date: 29/10/2017
  * Time: 21:08
  */
+
 session_start();
 
 $nome = $_POST["nome"];
 $email = $_POST["email"];
 $mensagem = $_POST["mensagem"];
 
-require_once("PHPMailerAutoload.php");
+include("PHPMailerAutoload.php");
 
 $mail = new PHPMailer();
 $mail->isSMTP();
