@@ -1,6 +1,7 @@
 <?php
 require_once('conecta.php');
 require_once ("class/Produto.php");
+require_once ("class/Categoria.php");
 
 function listaProdutos($conexao) {
     $produtos = array();
@@ -8,9 +9,11 @@ function listaProdutos($conexao) {
 
     while($produto_array = mysqli_fetch_assoc($resultado)) {
         $produto = new Produto();
+        $categoria = new Categoria();
+        $categoria->nome = $produto_array['categoria_nome'];
 
         $produto->nome = $produto_array['nome'];
-        $produto->categoria_id = $produto_array['categoria_nome'];
+        $produto->categoria = $categoria;
         $produto->descricao = $produto_array['descricao'];
         $produto->preco = $produto_array['preco'];
         $produto->usado = $produto_array['usado'];
@@ -27,14 +30,14 @@ function insereProduto($conexao, Produto $produto) {
         '{$produto->nome}', 
         {$produto->preco}, 
         '{$produto->descricao}', 
-        {$produto->categoria_id}, 
+        {$produto->categoria->id}, 
         {$produto->usado})";
     return mysqli_query($conexao, $query);
 }
 
-function alteraProduto($conexao, $id, $nome, $preco, $descricao, $categoria_id, $usado) {
-    $query = "update produtos set nome = '{$nome}', preco = {$preco}, descricao = '{$descricao}',
-        categoria_id= {$categoria_id}, usado = {$usado} where id = '{$id}'";
+function alteraProduto($conexao, Produto $produto) {
+    $query = "update produtos set nome = '{$produto->nome}', preco = {$produto->preco}, descricao = '{$produto->descricao}',
+        categoria_id= {$produto->categoria->id}, usado = {$produto->usado} where id = '{$produto->id}'";
     return mysqli_query($conexao, $query);
 }
 
@@ -46,5 +49,18 @@ function removeProduto($conexao, $id) {
 function buscaProduto($conexao, $id) {
     $query = "select * from produtos where id = {$id}";
     $resultado = mysqli_query($conexao, $query);
-    return mysqli_fetch_assoc($resultado);
+    $produto_buscado = mysqli_fetch_assoc($resultado);
+
+    $categoria = new Categoria();
+    $categoria->id = $produto_buscado['categoria_id'];
+
+    $produto = new Produto();
+    $produto->id = $produto_buscado['id'];
+    $produto->categoria = $categoria;
+    $produto->nome = $produto_buscado['nome'];
+    $produto->usado = $produto_buscado['usado'];
+    $produto->preco = $produto_buscado['preco'];
+    $produto->descricao = $produto_buscado['descricao'];
+
+    return $produto;
 }
