@@ -10,4 +10,4 @@ require_once("class/produto.php");
 
 $livro = new Produto();
 
-$livro->nome = 'Livro PHP';
+$livro->setNome('Livro PHP');

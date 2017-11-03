@@ -8,10 +8,10 @@ verificaUsuario();
 $produto = array("nome" => "", "descricao" => "", "preco" => "", "categoria_id" => "1");
 
 $categoria = new Categoria();
-$categoria->id = 1;
+$categoria->setNome(1);
 
 $produto = new Produto();
-$produto->categoria = $categoria;
+$produto->setCategoria($categoria);
 
 $usado = "";
 $categorias = listaCategorias($conexao);
