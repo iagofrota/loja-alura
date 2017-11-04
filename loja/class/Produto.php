@@ -8,6 +8,11 @@
 class Produto
 {
     private $id;
+    private $nome;
+    private $preco;
+    private $descricao;
+    private $categoria;
+    private $usado;
 
     /**
      * @return mixed
@@ -16,11 +21,6 @@ class Produto
     {
         return $this->id;
     }
-    private $nome;
-    private $preco;
-    private $descricao;
-    private $categoria;
-    private $usado;
 
     /**
      * @return mixed
@@ -78,7 +78,7 @@ class Produto
         $this->usado = $usado;
     }
 
-    public function __construct($nome, $descricao, $preco, $categoria, $usado)
+    public function __construct($nome, $preco, $descricao, Categoria $categoria, $usado)
     {
         $this->nome = $nome;
         $this->descricao = $descricao;

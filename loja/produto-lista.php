@@ -17,7 +17,7 @@ require_once ("banco-produto.php");
     ?>
     <tr>
         <td><?= $produto->getNome() ?></td>
-        <td><?= $produto->precoComDesconto() ?></td>
+        <td><?= $produto->getPreco() ?></td>
         <td><?= substr($produto->getDescricao(), 0, 40) ?></td>
         <td><?= $produto->getCategoria()->getNome() ?></td>
         <td><a class="btn btn-primary" href="produto-altera-formulario.php?id=<?= $produto->getId() ?>">alterar</a></td>

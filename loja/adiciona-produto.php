@@ -6,9 +6,10 @@ require_once ("class/Produto.php");
 require_once ("class/Categoria.php");
 
 verificaUsuario();
-?>
 
-<?php
+$categoria = new Categoria();
+$categoria->setId($_POST['categoria_id']);
+
 $nome = $_POST["nome"];
 $preco = $_POST["preco"];
 $descricao = $_POST["descricao"];
@@ -22,11 +23,11 @@ if(array_key_exists('usado', $_POST)) {
 $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
 
 if(insereProduto($conexao, $produto)) { ?>
-    <p class="text-success">O produto <?= $nome ?>, <?= $preco ?> adicionado com sucesso!</p>
+    <p class="text-success">O produto <?= $produto->getNome() ?>, <?= $produto->getPreco() ?> adicionado com sucesso!</p>
 <?php } else {
     $msg = mysqli_error($conexao);
     ?>
-    <p class="text-danger">O produto <?= $nome ?> não foi adicionado: <?= $msg ?></p>
+    <p class="text-danger">O produto <?= $produto->getNome() ?> não foi adicionado: <?= $msg ?></p>
     <?php
 }
 ?>

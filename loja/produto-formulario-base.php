@@ -5,9 +5,6 @@
  * Date: 26/10/2017
  * Time: 23:02
  */
-
-require_once ("class/Produto.php");
-require_once ("class/Categoria.php");
 ?>
 <tr>
     <td>Nome</td>
@@ -15,7 +12,7 @@ require_once ("class/Categoria.php");
 </tr>
 <tr>
     <td>Preço</td>
-    <td><input  class="form-control" type="number" name="preco" value="<?= $produto->getPreco() ?>"></td>
+    <td><input  class="form-control" type="number" name="preco" step="0.01" value="<?= $produto->getPreco() ?>"></td>
 </tr>
 <tr>
     <td>Descrição</td>
