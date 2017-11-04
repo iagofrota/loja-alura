@@ -10,8 +10,7 @@ $produto = array("nome" => "", "descricao" => "", "preco" => "", "categoria_id" 
 $categoria = new Categoria();
 $categoria->setNome(1);
 
-$produto = new Produto();
-$produto->setCategoria($categoria);
+$produto = new Produto("", "", "", $categoria, "");
 
 $usado = "";
 $categorias = listaCategorias($conexao);

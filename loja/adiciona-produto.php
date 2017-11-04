@@ -9,34 +9,25 @@ verificaUsuario();
 ?>
 
 <?php
-$produto = new Produto();
-$categoria = new Categoria();
-$categoria->id = $_POST['categoria_id'];
-
-$produto->nome = $_POST["nome"];
-$produto->preco = $_POST["preco"];
-$produto->descricao = $_POST["descricao"];
-$categoria->categoria = $categoria;
-
-//$nome = mysqli_real_escape_string($conexao, $_POST["nome"]);
-//$preco = mysqli_real_escape_string($conexao, $_POST["preco"]);
-//$descricao = mysqli_real_escape_string($conexao, $_POST["descricao"]);
-//$categoria_id = mysqli_real_escape_string($conexao, $_POST["categoria_id"]);
+$nome = $_POST["nome"];
+$preco = $_POST["preco"];
+$descricao = $_POST["descricao"];
 
 if(array_key_exists('usado', $_POST)) {
-    $produto->usado = "true";
+    $usado = "true";
 } else {
-    $produto->usado = "false";
+    $usado = "false";
 }
 
+$produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+
 if(insereProduto($conexao, $produto)) { ?>
-    <p class="text-success">O produto <?= $produto->nome; ?>, <?= $produto->preco; ?> adicionado com sucesso!</p>
+    <p class="text-success">O produto <?= $nome ?>, <?= $preco ?> adicionado com sucesso!</p>
 <?php } else {
     $msg = mysqli_error($conexao);
     ?>
-    <p class="text-danger">O produto <?= $produto->nome; ?> não foi adicionado: <?= $produto->msg ?></p>
+    <p class="text-danger">O produto <?= $nome ?> não foi adicionado: <?= $msg ?></p>
     <?php
 }
 ?>
-
 <?php include("rodape.php"); ?>

@@ -8,6 +8,14 @@
 class Produto
 {
     private $id;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
     private $nome;
     private $preco;
     private $descricao;
@@ -17,37 +25,9 @@ class Produto
     /**
      * @return mixed
      */
-    public function getCategoria()
-    {
-        return $this->categoria;
-    }
-
-    /**
-     * @param mixed $categoria
-     * @return Produto
-     */
-    public function setCategoria($categoria)
-    {
-        $this->categoria = $categoria;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function isUsado()
     {
         return $this->usado;
-    }
-
-    /**
-     * @param mixed $usado
-     * @return Produto
-     */
-    public function setUsado($usado)
-    {
-        $this->usado = $usado;
-        return $this;
     }
 
     /**
@@ -59,13 +39,11 @@ class Produto
     }
 
     /**
-     * @param mixed $nome
-     * @return Produto
+     * @return mixed
      */
-    public function setNome($nome)
+    public function getPreco()
     {
-        $this->nome = $nome;
-        return $this;
+        return $this->preco;
     }
 
     /**
@@ -77,19 +55,11 @@ class Produto
     }
 
     /**
-     * @param mixed $descricao
-     */
-    public function setDescricao($descricao)
-    {
-        $this->descricao = $descricao;
-    }
-
-    /**
      * @return mixed
      */
-    public function getId()
+    public function getCategoria()
     {
-        return $this->id;
+        return $this->categoria;
     }
 
     /**
@@ -101,21 +71,20 @@ class Produto
     }
 
     /**
-     * @return preço
+     * @param mixed $usado
      */
-    public function getPreco()
+    public function setUsado($usado)
     {
-        return $this->preco;
+        $this->usado = $usado;
     }
 
-    /**
-     * @param mixed $preco
-     */
-    public function setPreco($preco)
+    public function __construct($nome, $descricao, $preco, $categoria, $usado)
     {
-        if ($preco > 0) {
-            $this->preco = $preco;
-        }
+        this.$nome = $nome;
+        this.$descricao = $descricao;
+        this.$preco = $preco;
+        this.$categoria = $categoria;
+        this.$usado = $usado;
     }
 
     public function precoComDesconto($valor = 0.1)
@@ -124,5 +93,10 @@ class Produto
             $this->preco -= $this->preco * $valor;
         }
         return $this->preco;
+    }
+
+    public function __destruct()
+    {
+        echo "Objeto produto destruído";
     }
 }
