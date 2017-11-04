@@ -80,11 +80,11 @@ class Produto
 
     public function __construct($nome, $descricao, $preco, $categoria, $usado)
     {
-        this.$nome = $nome;
-        this.$descricao = $descricao;
-        this.$preco = $preco;
-        this.$categoria = $categoria;
-        this.$usado = $usado;
+        $this->nome = $nome;
+        $this->descricao = $descricao;
+        $this->preco = $preco;
+        $this->categoria = $categoria;
+        $this->usado = $usado;
     }
 
     public function precoComDesconto($valor = 0.1)
