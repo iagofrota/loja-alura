@@ -22,9 +22,12 @@ if(array_key_exists('usado', $_POST)) {
 
 $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
 
-if(insereProduto($conexao, $produto)) { ?>
+if(insereProduto($conexao, $produto))
+{ ?>
     <p class="text-success">O produto <?= $produto->getNome() ?>, <?= $produto->getPreco() ?> adicionado com sucesso!</p>
-<?php } else {
+    <?php
+} else
+{
     $msg = mysqli_error($conexao);
     ?>
     <p class="text-danger">O produto <?= $produto->getNome() ?> não foi adicionado: <?= $msg ?></p>
