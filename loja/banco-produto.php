@@ -8,7 +8,6 @@ function listaProdutos($conexao) {
     $resultado = mysqli_query($conexao, "SELECT p.*,c.nome AS categoria_nome FROM produtos AS p JOIN categorias AS c ON c.id=p.categoria_id");
 
     while($produto_array = mysqli_fetch_assoc($resultado)) {
-
         $categoria = new Categoria();
         $categoria->setNome($produto_array['categoria_nome']);
 
