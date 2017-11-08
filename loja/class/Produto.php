@@ -94,9 +94,4 @@ class Produto
         }
         return $this->preco;
     }
-
-    public function __destruct()
-    {
-        echo "Objeto produto destruído";
-    }
 }
