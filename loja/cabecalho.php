@@ -1,11 +1,12 @@
 <?php
-error_reporting(E_ALL ^ E_NOTICE);
-require_once 'mostra-alerta.php';
-
 spl_autoload_register(function ($nomeDaClasse)
 {
     require_once ("class/" . $nomeDaClasse . '.php');
 });
+
+error_reporting(E_ALL ^ E_NOTICE);
+require_once 'mostra-alerta.php';
+require_once ("conecta.php");
 
 ?>
 <html>
